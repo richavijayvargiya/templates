@@ -1,7 +1,7 @@
       { pkgs, packageManager, ... }: {
            channel = "stable-25.05";
           packages = [
-            pkgs.nodejs_20
+            pkgs.nodejs
             pkgs.git
           ];
 
