@@ -13,7 +13,7 @@
           # /nix/store/mvr5wczap3ga80iq548n2griy8kx9ksx-idx-template/bin/idx-template ~/Monospace/workspace/nix_templates/public/nuxt --output-dir ~ --workspace-name foo -a '{"packageManager": "bun"}'
 
           bootstrap = ''
-            npx nuxi@latest -y init "$out" \
+            npx nuxi -y init "$out" \
               --package-manager ${packageManager} \
               --no-install \
               --git-init
@@ -23,12 +23,12 @@
             chmod -R +w "$out"
 
             sed -i "s/PACKAGE_MANAGER/${packageManager}/g" "$out"/.idx/dev.nix
-            sed -i "s/PM_COMMAND/${{
-              "npm": "npm install",
-              "pnpm": "pnpm install",
-              "bun": "bun install",
-              "yarn": "yarn install"
-            }[packageManager]}/g" "$out"/.idx/dev.nix
+            sed -i "s/PM_COMMAND/${
+        if packageManager == "npm" then
+          "npm ci --no-audit --prefer-offline --no-progress --timing"
+        else
+          "${packageManager} install"        
+      }/g" "$out"/.idx/dev.nix
 
             sed -i "s/PM_NIX_PACKAGE/${
               if packageManager == "npm" then
