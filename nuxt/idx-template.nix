@@ -1,5 +1,5 @@
 { pkgs, packageManager, ... }: {
-
+     channel = "stable-25.05";
     packages = [
       pkgs.nodejs_20
       pkgs.git
@@ -13,6 +13,7 @@
     # /nix/store/mvr5wczap3ga80iq548n2griy8kx9ksx-idx-template/bin/idx-template ~/Monospace/workspace/nix_templates/public/nuxt --output-dir ~ --workspace-name foo -a '{"packageManager": "bun"}'
 
     bootstrap = ''
+      npx --prefer-offline -y @nuxt/cli start "$WS_NAME" blank --type=nuxt --no-deps --no-git --no-link --no-
       npx nuxi@latest -y init "$out" \
         --package-manager ${packageManager} \
         --no-install \
