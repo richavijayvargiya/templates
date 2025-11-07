@@ -2,12 +2,11 @@
 # see: https://developers.google.com/idx/guides/customize-idx-env
 {pkgs}: {
   # Which nixpkgs channel to use.
-  channel = "stable-23.05"; # or "unstable"
+  channel = "stable-25.05"; # or "unstable"
   # Use https://search.nixos.org/packages to find packages
   packages = [
-    pkgs.nodejs_20
-    PM_NIX_PACKAGE
-    pkgs.npm-check-updates
+    pkgs.nodejs_24    
+    pkgs.nodePackages.npm-check-updates
   ];
   # Sets environment variables in the workspace
   env = {};
@@ -19,14 +18,21 @@
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
       onCreate = {
-        PACKAGE_MANAGER-install = "PM_COMMAND";
+        npm-install = "npm ci --no-audit --prefer-offline --no-progress --timing";
         # Open editors for the following files by default, if they exist:
         default.openFiles = [ "app.vue" ];
-      };
+      
+      }; ā
       # To run something each time the workspace is (re)started, use the `onStart` hook
       onStart = {
-        npm-install = "npm install";
-        npm-check-updates = "ncu -u";
+         npm-install = "npm install";
+
+  #clean-install = ''
+    #rm -rf node_modules package-lock.json
+    #npm ci --no-audit --prefer-offline --no-progress --timing || npm install
+  #'';
+  npm-check-updates = "ncu -u";
+
       };
     };
     # Enable previews and customize configuration
