@@ -9,25 +9,26 @@
           # npx nuxi@latest init nuxt-idx --package-manager bun --install true --git-init true --force true
 
           # To test this configuration:
-          # /nix/store/mvr5wczap3ga80iq548n2griy8kx9ksx-idx-template/bin/idx-template ~/Monospace/workspace/nix_templates/public/nuxt --output-dir ~ --workspace-name foo -a '{"packageManager": "bun"}'
+          # /nix/store/mvr5wczap3ga80iq548n2griy8kx9ksx-idx-template/bin/idx-template ~/Monospace/workspace/nix_templates/public/nuxt --output-dir ~ --workspace-name foo -a '{'''packageManager''': '''bun'''}'
 
-          bootstrap = ''
-            npx -y nuxi init "$out" \
+          bootstrap = '''
+            mkdir -p "$out"
+            cd "$out"
+            npx -y nuxi init . \
               --package-manager ${packageManager} \
               --no-install \
               --no-git
 
-            mkdir "$out"/.idx
-            cp ${./dev.nix} "$out"/.idx/dev.nix
-            chmod -R +w "$out"
+            mkdir .idx
+            cp ${./dev.nix} .idx/dev.nix
 
-            sed -i "s/PACKAGE_MANAGER/${packageManager}/g" "$out"/.idx/dev.nix
+            sed -i "s/PACKAGE_MANAGER/${packageManager}/g" .idx/dev.nix
             sed -i "s/PM_COMMAND/${
         if packageManager == "npm" then
           "npm ci --no-audit --prefer-offline --no-progress --timing"
         else
           "${packageManager} install"         
-      }/g" "$out"/.idx/dev.nix
+      }/g" .idx/dev.nix
 
             sed -i "s/PM_NIX_PACKAGE/${
               if packageManager == "npm" then
@@ -38,14 +39,12 @@
                 "pkgs.bun"
               else
                 "pkgs.yarn"
-            }/g" "$out"/.idx/dev.nix
+            }/g" .idx/dev.nix
 
-            mkdir -p "$out/.idx"
-            chmod -R u+w "$out"
-            cp -rf ${./.idx/airules.md} "$out"/.idx/airules.md
-            cp -rf "$out/.idx/airules.md" "$out/GEMINI.md"
-            chmod -R u+w "$out"
+            cp -rf ${./.idx/airules.md} .idx/airules.md
+            cp -rf .idx/airules.md GEMINI.md
+            chmod -R u+w .
 
-            ${if packageManager == "npm" then "( cd \$out && npm i --package-lock-only --ignore-scripts )" else ""}
-          '';
+            ${if packageManager == "npm" then "( npm i --package-lock-only --ignore-scripts )" else ""}
+          ''';
       }
