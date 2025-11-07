@@ -31,20 +31,22 @@
       }/g" .idx/dev.nix
 
             sed -i "s/PM_NIX_PACKAGE/${
-              if packageManager == "npm" then
-                ""
-              else if packageManager == "pnpm" then
-                "pkgs.nodePackages.pnpm"
-              else if packageManager == "bun" then
-                "pkgs.bun"
-              else
-                "pkgs.yarn"
-            }/g" .idx/dev.nix
+        if packageManager == "npm" then
+          ""
+        else if packageManager == "pnpm" then
+          "pkgs.nodePackages.pnpm"
+        else if packageManager == "bun" then
+          "pkgs.bun"
+        else
+          "pkgs.yarn"
+      }/g" "$out"/.idx/dev.nix
 
-            cp -rf ${./.idx/airules.md} .idx/airules.md
-            cp -rf .idx/airules.md GEMINI.md
-            chmod -R u+w .
+      mkdir -p "$out/.idx"
+      chmod -R u+w "$out"
+      cp -rf ${./.idx/airules.md} "$out/.idx/airules.md"
+      cp -rf "$out/.idx/airules.md" "$out/GEMINI.md"
+      chmod -R u+w "$out"
 
-            ${if packageManager == "npm" then "( cd \$out && npm i --package-lock-only --ignore-scripts )" else ""}
+      ${if packageManager == "npm" then "( cd \$out && npm i --package-lock-only --ignore-scripts )" else ""}
     '';
       }
