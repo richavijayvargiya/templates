@@ -12,7 +12,7 @@
           # /nix/store/mvr5wczap3ga80iq548n2griy8kx9ksx-idx-template/bin/idx-template ~/Monospace/workspace/nix_templates/public/nuxt --output-dir ~ --workspace-name foo -a '{"packageManager": "bun"}'
 
           bootstrap = ''
-            npx nuxi -y init "$out" \
+            npx -y nuxi init "$out" \
               --package-manager ${packageManager} \
               --no-install \
               --no-git
@@ -42,7 +42,7 @@
 
             mkdir -p "$out/.idx"
             chmod -R u+w "$out"
-            cp -rf ${./.idx/airules.md} "$out"/.idx/airules.md"
+            cp -rf ${./.idx/airules.md} "$out"/.idx/airules.md
             cp -rf "$out/.idx/airules.md" "$out/GEMINI.md"
             chmod -R u+w "$out"
 
