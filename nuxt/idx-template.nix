@@ -45,6 +45,6 @@
             cp -rf .idx/airules.md GEMINI.md
             chmod -R u+w .
 
-            ${if packageManager == "npm" then "( npm i --package-lock-only --ignore-scripts )" else ""}
-          ''';
+            ${if packageManager == "npm" then "( cd \$out && npm i --package-lock-only --ignore-scripts )" else ""}
+    '';
       }
