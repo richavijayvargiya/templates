@@ -22,7 +22,7 @@
         # Open editors for the following files by default, if they exist:
         default.openFiles = [ "app.vue" ];
       
-      }; ā
+      };
       # To run something each time the workspace is (re)started, use the `onStart` hook
       onStart = {
          npm-install = "npm install";
