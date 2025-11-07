@@ -7,6 +7,7 @@
   packages = [
     pkgs.nodejs_20
     PM_NIX_PACKAGE
+    pkgs.npm-check-updates
   ];
   # Sets environment variables in the workspace
   env = {};
@@ -23,6 +24,10 @@
         default.openFiles = [ "app.vue" ];
       };
       # To run something each time the workspace is (re)started, use the `onStart` hook
+      onStart = {
+        npm-install = "npm install";
+        npm-check-updates = "ncu -u";
+      };
     };
     # Enable previews and customize configuration
     previews = {

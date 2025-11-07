@@ -1,8 +1,7 @@
       { pkgs, packageManager, ... }: {
            channel = "stable-25.05";
           packages = [
-            pkgs.nodejs
-            pkgs.git
+            pkgs.nodejs_20
           ];
 
           # Available options as of 1/17/2024
@@ -16,7 +15,7 @@
             npx nuxi -y init "$out" \
               --package-manager ${packageManager} \
               --no-install \
-              --git-init
+              --no-git
 
             mkdir "$out"/.idx
             cp ${./dev.nix} "$out"/.idx/dev.nix
@@ -27,7 +26,7 @@
         if packageManager == "npm" then
           "npm ci --no-audit --prefer-offline --no-progress --timing"
         else
-          "${packageManager} install"        
+          "${packageManager} install"         
       }/g" "$out"/.idx/dev.nix
 
             sed -i "s/PM_NIX_PACKAGE/${
