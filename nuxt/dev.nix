@@ -18,7 +18,7 @@
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
       onCreate = {
-        npm-install = PM_COMMAND;
+        PM_COMMAND ;
         # Open editors for the following files by default, if they exist:
         default.openFiles = [ "app.vue" ];
       
