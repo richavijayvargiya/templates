@@ -28,7 +28,7 @@
 
       sed -i "s/PM_COMMAND/${
         if packageManager == "npm" then
-          "npm ci --no-audit --prefer-offline --no-progress --timing"
+          "echo No | npm ci --no-audit --prefer-offline --no-progress --timing"
         else
           "${packageManager} install"        
       }/g" "$out"/.idx/dev.nix
