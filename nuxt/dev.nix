@@ -18,17 +18,14 @@
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
       onCreate = {
-       npm-install = ''
-    PM_COMMAND
-  '';
-        #npm-install = "PM_COMMAND" ;
+        npm-install = "PM_COMMAND" ;
         # Open editors for the following files by default, if they exist:
         default.openFiles = [ "app.vue" ];
       
       };
       # To run something each time the workspace is (re)started, use the `onStart` hook
       onStart = {
-         npm-install = "npm install";
+         npm-install = "PM_COMMAND";
 
   #clean-install = ''
     #rm -rf node_modules package-lock.json
