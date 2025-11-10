@@ -1,8 +1,8 @@
 { pkgs, packageManager, ... }: {
 
     packages = [
-      pkgs.nodejs_24    
-      pkgs.nodePackages.npm-check-updates
+      pkgs.nodejs_20
+      pkgs.git
     ];
 
     # Available options as of 1/17/2024
