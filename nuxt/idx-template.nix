@@ -16,8 +16,7 @@
        npx nuxi@latest -y init "$out" \
         --package-manager ${packageManager} \
         --no-install \
-        --no-git \
-        --force <<< "No"
+        --no-git <<< "No"
 
       mkdir "$out"/.idx
       cp ${./dev.nix} "$out"/.idx/dev.nix
