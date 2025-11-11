@@ -26,13 +26,8 @@
       };
       # To run something each time the workspace is (re)started, use the `onStart` hook
       onStart = {
-         npm-install = "PM_COMMAND";
-
-  #clean-install = ''
-    #rm -rf node_modules package-lock.json
-    #npm ci --no-audit --prefer-offline --no-progress --timing || npm install
-  #'';
-  npm-check-updates = "ncu -u";
+         npm-install = "npm install";
+         npm-check-updates = "ncu -u";
 
       };
     };
