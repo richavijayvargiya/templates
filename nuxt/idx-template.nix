@@ -13,7 +13,7 @@
     # /nix/store/mvr5wczap3ga80iq548n2griy8kx9ksx-idx-template/bin/idx-template ~/Monospace/workspace/nix_templates/public/nuxt --output-dir ~ --workspace-name foo -a '{"packageManager": "bun"}'
 
     bootstrap = ''
-       npx -y nuxi@latest init "$out" \
+       npx nuxi@latest -y init "$out" \
         --package-manager ${packageManager} \
         --no-install \
         --no-git \
