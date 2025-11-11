@@ -26,7 +26,7 @@
       };
       # To run something each time the workspace is (re)started, use the `onStart` hook
       onStart = {
-         npm-install = "npm install";
+         npm-install = "PM_COMMAND_START";
          npm-check-updates = "ncu -u";
 
       };
@@ -36,7 +36,7 @@
       enable = true;
       previews = {
         web = {
-           command = ["sh" "-c" "npm install && npm run dev -- --port $PORT --hostname 0.0.0.0"];
+           command = ["sh" "-c" "PM_COMMAND_START && npm run dev -- --port $PORT --hostname 0.0.0.0"];
            manager = "web";
         };
       };

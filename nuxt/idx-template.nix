@@ -30,7 +30,10 @@
         if packageManager == "npm" then
           "echo No | npm ci --no-audit --prefer-offline --no-progress --timing"
         else
-          "${packageManager} install"        
+          "${packageManager} install"     
+
+      sed -i "s/PM_COMMAND_START/${
+                  "${packageManager} install"    
       }/g" "$out"/.idx/dev.nix
 
       sed -i "s/PM_NIX_PACKAGE/${
