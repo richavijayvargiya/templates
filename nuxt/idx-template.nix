@@ -13,12 +13,11 @@
     # /nix/store/mvr5wczap3ga80iq548n2griy8kx9ksx-idx-template/bin/idx-template ~/Monospace/workspace/nix_templates/public/nuxt --output-dir ~ --workspace-name foo -a '{"packageManager": "bun"}'
 
     bootstrap = ''
-      echo "No" | \
-      npx -y nuxi@latest init "$out" \
+       npx -y nuxi@latest init "$out" \
         --package-manager ${packageManager} \
         --no-install \
         --no-git \
-        --force
+        --force <<< "No"
 
       mkdir "$out"/.idx
       cp ${./dev.nix} "$out"/.idx/dev.nix
@@ -28,9 +27,9 @@
 
       sed -i "s/PM_COMMAND/${
         if packageManager == "npm" then
-          "echo No | npm ci --no-audit --prefer-offline --no-progress --timing"
+          "npm ci --no-audit --prefer-offline --no-progress --timing <<< No"
         else
-          "${packageManager} install"        
+          "${packageManager} install <<< No"        
       }/g" "$out"/.idx/dev.nix
 
       sed -i "s/PM_INSTALL/${
