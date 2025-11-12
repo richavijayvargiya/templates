@@ -31,6 +31,10 @@
           "${packageManager} install"        
       }/g" "$out"/.idx/dev.nix
 
+      sed -i "s/PM_INSTALL/${
+            "${packageManager} install"        
+      }/g" "$out"/.idx/dev.nix
+      
       sed -i "s/PM_NIX_PACKAGE/${
         if packageManager == "npm" then
           ""
