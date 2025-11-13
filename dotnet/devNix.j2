@@ -17,9 +17,9 @@
     ];{% if environment == "web" %}
     workspace = {
       # Runs when a workspace is (re)started
-      onStart = {
-        run-server = "dotnet watch --urls=http://localhost:3000";
-      };
+      #onStart = {
+       # run-server = "dotnet watch --urls=http://localhost:3000";
+    #  };
     };{% endif %}{% if environment == "blazor" %}
     # Enable previews and customize configuration
     previews = {
