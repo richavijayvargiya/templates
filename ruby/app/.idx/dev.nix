@@ -2,16 +2,20 @@
 # see: https://developers.google.com/idx/guides/customize-idx-env
 { pkgs, ... }: {
   # Which nixpkgs channel to use.
-  channel = "stable-24.05"; # or "unstable"
+  channel = "stable-25.05"; # or "unstable"
   # Use https://search.nixos.org/packages to find packages
   packages = [
     pkgs.ruby
     pkgs.bundler
     pkgs.gcc
     pkgs.gnumake
+    pkgs.openssl
   ];
   # Sets environment variables in the workspace
-  env = {};
+  env = {
+    PORT = "8080";
+    RACK_ENV = "development";
+  };
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
