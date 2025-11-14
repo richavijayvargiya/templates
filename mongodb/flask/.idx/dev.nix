@@ -1,8 +1,9 @@
 { pkgs, ... }: {
-  channel = "stable-23.11";
+  channel = "stable-25.05";
 
   packages = [
-    pkgs.python3
+    pkgs.python313
+    pkgs.python313Packages.pip
   ];
 
   services.mongodb = {
