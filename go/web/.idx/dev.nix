@@ -2,7 +2,7 @@
 # see: https://developers.google.com/idx/guides/customize-idx-env
 { pkgs, ... }: {
   # Which nixpkgs channel to use.
-  channel = "stable-23.11"; # or "unstable"
+  channel = "stable-25.05"; # or "unstable"
   # Use https://search.nixos.org/packages to find packages
   packages = [
     pkgs.go
@@ -19,6 +19,7 @@
     workspace = {
       onCreate = {
         # Open editors for the following files by default, if they exist:
+        go-mod-tidy = "go mod tidy";
         default.openFiles = ["server.go"];
       };
     };
