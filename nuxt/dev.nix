@@ -2,11 +2,12 @@
 # see: https://developers.google.com/idx/guides/customize-idx-env
 {pkgs}: {
   # Which nixpkgs channel to use.
-  channel = "stable-23.05"; # or "unstable"
+  channel = "stable-25.05"; # or "unstable"
   # Use https://search.nixos.org/packages to find packages
   packages = [
-    pkgs.nodejs_20
+    pkgs.nodejs_24
     PM_NIX_PACKAGE
+    pkgs.nodePackages.npm-check-updates
   ];
   # Sets environment variables in the workspace
   env = {};
@@ -29,7 +30,7 @@
       enable = true;
       previews = {
         web = {
-          command = ["npm" "run" "dev" "--" "--port" "$PORT" "--hostname" "0.0.0.0"];
+          command = ["sh" "-c" "PM_INSTALL && npm" "run" "dev" "--" "--port" "$PORT" "--hostname" "0.0.0.0"];
           manager = "web";
         };
       };
