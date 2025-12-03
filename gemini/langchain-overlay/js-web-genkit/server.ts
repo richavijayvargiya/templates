@@ -59,7 +59,6 @@ async function createServer() {
     app.post("/api/generate", express.json(), async (req, res) => {
         const { image, userPrompt } = req.body;
         let imageUrl = `./static/images/${image}`;
-        console.log(imageUrl);
         const imageBase64 = await fs.readFile(imageUrl, { encoding: 'base64' });
 
         const result = await recipieWithContextFlow({
