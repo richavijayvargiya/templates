@@ -15,9 +15,10 @@
     bootstrap = ''
       
 npx nuxi@3.31.2 init "$out" \
+  --t "minimal" \
   --packageManager "${packageManager}" \
   --no-install \
-  --no-modules
+  --no-modules <<< NO
 
       mkdir "$out"/.idx
       cp ${./dev.nix} "$out"/.idx/dev.nix
