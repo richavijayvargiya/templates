@@ -14,7 +14,7 @@
 
     bootstrap = ''
       
-npx nuxt@latest init "$out" \
+npx nuxi@latest init "$out" \
   --t "minimal" \
   --packageManager "${packageManager}" \
   --no-install \
