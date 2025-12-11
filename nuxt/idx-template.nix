@@ -14,6 +14,7 @@
 
     bootstrap = ''
       npx nuxi@latest -y init "$out" \
+        --template "minimal"
         --package-manager ${packageManager} \
         --no-install \
         --git-init  <<< "No"
