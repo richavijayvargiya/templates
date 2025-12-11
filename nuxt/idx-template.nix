@@ -28,7 +28,7 @@ npx nuxi@latest init "$out" \
 
       sed -i "s/PM_COMMAND/${
         if packageManager == "npm" then
-          "npm ci --no-audit --prefer-offline --no-progress --timing"
+          "npm i --no-audit --prefer-offline --no-progress --timing"
         else
           "${packageManager} install"        
       }/g" "$out"/.idx/dev.nix
